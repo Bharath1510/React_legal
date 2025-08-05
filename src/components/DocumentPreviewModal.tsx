@@ -1,5 +1,7 @@
 import React from 'react';
 import { X, FileText, Download, Edit, RefreshCw, Clock, RotateCcw } from 'lucide-react';
+import DocumentViewerModal from './DocumentViewerModal';
+import StatusUpdateModal from './StatusUpdateModal';
 
 interface DocumentPreviewModalProps {
   isOpen: boolean;
@@ -17,6 +19,9 @@ const DocumentPreviewModal: React.FC<DocumentPreviewModalProps> = ({
   docType
 }) => {
   if (!isOpen) return null;
+
+  const [documentViewerOpen, setDocumentViewerOpen] = React.useState(false);
+  const [statusUpdateOpen, setStatusUpdateOpen] = React.useState(false);
 
   const relatedReferences = [
     {
@@ -54,9 +59,9 @@ const DocumentPreviewModal: React.FC<DocumentPreviewModalProps> = ({
   ];
 
   const actionButtons = [
-    { icon: FileText, label: 'View Reference Document', bgColor: 'bg-blue-50', iconColor: 'text-blue-600' },
-    { icon: Download, label: 'View/Edit AI Generated Document', bgColor: 'bg-cyan-50', iconColor: 'text-cyan-600' },
-    { icon: Edit, label: 'Update Status', bgColor: 'bg-gray-50', iconColor: 'text-gray-600' },
+    { icon: FileText, label: 'View Reference Document', bgColor: 'bg-blue-50', iconColor: 'text-blue-600', onClick: () => {} },
+    { icon: Download, label: 'View/Edit AI Generated Document', bgColor: 'bg-cyan-50', iconColor: 'text-cyan-600', onClick: () => setDocumentViewerOpen(true) },
+    { icon: Edit, label: 'Update Status', bgColor: 'bg-gray-50', iconColor: 'text-gray-600', onClick: () => setStatusUpdateOpen(true) },
     { icon: RefreshCw, label: 'Highlighted Terms', bgColor: 'bg-green-50', iconColor: 'text-green-600' },
     { icon: Clock, label: 'Activity History', bgColor: 'bg-orange-50', iconColor: 'text-orange-600' },
     { icon: RotateCcw, label: 'Version History', bgColor: 'bg-purple-50', iconColor: 'text-purple-600' }
@@ -180,6 +185,7 @@ const DocumentPreviewModal: React.FC<DocumentPreviewModalProps> = ({
             {actionButtons.map((button, index) => (
               <button
                 key={index}
+                onClick={button.onClick}
                 className={`${button.bgColor} p-4 rounded-lg hover:opacity-80 transition-opacity`}
               >
                 <div className="flex flex-col items-center text-center space-y-2">
@@ -204,6 +210,26 @@ const DocumentPreviewModal: React.FC<DocumentPreviewModalProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Document Viewer Modal */}
+      <DocumentViewerModal
+        isOpen={documentViewerOpen}
+        onClose={() => setDocumentViewerOpen(false)}
+        documentId={documentId}
+        customerName={customerName}
+        docType={docType}
+      />
+
+      {/* Status Update Modal */}
+      <StatusUpdateModal
+        isOpen={statusUpdateOpen}
+        onClose={() => setStatusUpdateOpen(false)}
+        documentId={documentId}
+        customerName={customerName}
+        docType={docType}
+        requester="John Smith"
+        currentStatus="pendingLegalReview"
+      />
     </div>
   );
 };
