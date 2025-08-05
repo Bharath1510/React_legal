@@ -1,0 +1,23 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "a7c3c5e4-8b2d-4f1e-9c3a-1b2c3d4e5f6g",
+  "alias": "LegalDashboardWebPart",
+  "componentType": "WebPart",
+
+  "version": "*",
+  "manifestVersion": 2,
+
+  "requiresCustomScript": false,
+  "supportedHosts": ["SharePointWebPart", "TeamsPersonalApp", "TeamsTab", "SharePointFullPage"],
+
+  "preconfiguredEntries": [{
+    "groupId": "5c03119e-3074-46fd-976b-c60198311f70",
+    "group": { "default": "Advanced" },
+    "title": { "default": "Legal Dashboard" },
+    "description": { "default": "Legal Dashboard with AI Review functionality" },
+    "officeFabricIconFontName": "Page",
+    "properties": {
+      "description": "Legal Dashboard"
+    }
+  }]
+}

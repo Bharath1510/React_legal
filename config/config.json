@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "legal-dashboard-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/legalDashboard/LegalDashboardWebPart.js",
+          "manifest": "./src/webparts/legalDashboard/LegalDashboardWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "LegalDashboardWebPartStrings": "lib/webparts/legalDashboard/loc/{locale}.js"
+  }
+}
