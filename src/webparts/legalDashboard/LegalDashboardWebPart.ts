@@ -18,6 +18,13 @@ export interface ILegalDashboardWebPartProps {
 export default class LegalDashboardWebPart extends BaseClientSideWebPart<ILegalDashboardWebPartProps> {
 
   public render(): void {
+    // Set full screen styles on the web part container
+    this.domElement.style.height = '100vh';
+    this.domElement.style.width = '100%';
+    this.domElement.style.margin = '0';
+    this.domElement.style.padding = '0';
+    this.domElement.style.overflow = 'hidden';
+
     const element: React.ReactElement<ILegalDashboardProps> = React.createElement(
       LegalDashboard,
       {

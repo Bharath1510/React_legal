@@ -8,12 +8,27 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigate }) => {
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#f9fafb' }}>
+    <div style={{ 
+      height: '100vh', 
+      width: '100vw',
+      backgroundColor: '#f9fafb',
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      zIndex: 1000,
+      overflow: 'hidden'
+    }}>
       {/* Header */}
       <header style={{ 
         backgroundColor: 'white', 
         borderBottom: '1px solid #e5e7eb', 
-        padding: '1rem 1.5rem' 
+        padding: '1rem 1.5rem',
+        height: '80px',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 1001
       }}>
         <div style={{ 
           display: 'flex', 
@@ -81,9 +96,14 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigate }) =>
         <aside style={{ 
           width: '192px', 
           backgroundColor: 'white', 
-          minHeight: 'calc(100vh - 80px)', 
+          height: 'calc(100vh - 80px)',
           borderRight: '1px solid #e5e7eb', 
-          padding: '1rem' 
+          padding: '1rem',
+          position: 'fixed',
+          top: '80px',
+          left: 0,
+          overflowY: 'auto',
+          zIndex: 1000
         }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <button
@@ -203,7 +223,14 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigate }) =>
         </aside>
 
         {/* Main Content */}
-        <main style={{ flex: 1, padding: '1.5rem' }}>
+        <main style={{ 
+          marginLeft: '192px',
+          marginTop: '80px',
+          padding: '1.5rem',
+          height: 'calc(100vh - 80px)',
+          overflowY: 'auto',
+          width: 'calc(100vw - 192px)'
+        }}>
           {children}
         </main>
       </div>
